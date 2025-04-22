@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MediZen",
-  description: "MediZen is a meditation app that helps you meditate.",
+  title: "Serenity",
+  description: "Serenity is a meditation app that helps you meditate.",
 };
 
 export default function RootLayout({
