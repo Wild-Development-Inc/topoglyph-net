@@ -62,7 +62,7 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  --radius: 1rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -134,6 +134,9 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-background text-foreground;
   }
@@ -144,5 +147,4 @@
   margin-right: auto;
   padding-left: 2rem;
   padding-right: 2rem;
-  max-width: var(--container-max-width-2xl);
 }
