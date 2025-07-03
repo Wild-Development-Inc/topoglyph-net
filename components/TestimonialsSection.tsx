@@ -1,86 +1,213 @@
 "use client";
 
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent } from "@/components/ui/card";
-import { Star } from "lucide-react";
 import { motion, useInView } from "motion/react";
-import Image from "next/image";
 import { useRef } from "react";
+import { Marquee } from "@/components/magicui/marquee";
+import { cn } from "@/lib/utils";
 
-interface Testimonial {
+export interface TestimonialCardProps
+  extends React.HTMLAttributes<HTMLDivElement> {
   name: string;
   role: string;
-  content: string;
-  avatar: string;
+  img?: string;
+  description: React.ReactNode;
+  className?: string;
+}
+
+export const TestimonialCard = ({
+  description,
+  name,
+  img,
+  role,
+  className,
+  ...props
+}: TestimonialCardProps) => (
+  <div
+    className={cn(
+      "flex w-full cursor-pointer break-inside-avoid flex-col items-center justify-between gap-6 rounded-lg border bg-card p-6 text-card-foreground shadow-sm",
+      className
+    )}
+    {...props}
+  >
+    <div className="select-none leading-relaxed text-sm">{description}</div>
+
+    <div className="flex w-full select-none items-center justify-start gap-3">
+      <img src={img} alt={name} className="size-8 rounded-full" />
+
+      <div>
+        <p className="font-medium text-sm">{name}</p>
+        <p className="text-xs text-muted-foreground">{role}</p>
+      </div>
+    </div>
+  </div>
+);
+
+interface Testimonial {
+  id: string;
+  name: string;
+  role: string;
+  img: string;
+  description: React.ReactNode;
+}
+
+export function SocialProofTestimonials({
+  testimonials,
+}: {
+  testimonials: Testimonial[];
+}) {
+  return (
+    <div className="h-full">
+      <div className="px-10">
+        <div className="relative max-h-[750px] overflow-hidden">
+          <div className="gap-0 md:columns-2 xl:columns-3">
+            {Array(Math.ceil(testimonials.length / 3))
+              .fill(0)
+              .map((_, i) => (
+                <Marquee
+                  vertical
+                  key={i}
+                  className={cn({
+                    "[--duration:60s]": i === 1,
+                    "[--duration:30s]": i === 2,
+                    "[--duration:70s]": i === 3,
+                  })}
+                >
+                  {testimonials.slice(i * 3, (i + 1) * 3).map((card, idx) => (
+                    <TestimonialCard {...card} key={idx} />
+                  ))}
+                </Marquee>
+              ))}
+          </div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/6 md:h-1/5 w-full bg-gradient-to-t from-background from-20%"></div>
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-1/6 md:h-1/5 w-full bg-gradient-to-b from-background from-20%"></div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export function TestimonialsSection() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
-  const testimonials: Testimonial[] = [
+  const testimonials = [
     {
+      id: "1",
       name: "Emma Thompson",
       role: "Yoga Instructor",
-      content:
-        "Serenity has become an essential part of my daily routine. The sleep stories have completely transformed my nights, and I wake up feeling refreshed every morning.",
-      avatar: "/joyful-woman.png",
+      img: "/joyful-woman.png",
+      description: (
+        <p>
+          Serenity has become an essential part of my daily routine. The sleep
+          stories have completely transformed my nights, and I wake up feeling
+          refreshed every morning.
+        </p>
+      ),
     },
     {
+      id: "2",
       name: "David Chen",
       role: "Software Engineer",
-      content:
-        "As someone who deals with anxiety, this app has been life-changing. The guided meditations help me stay centered during stressful workdays.",
-      avatar: "/cheerful-asian-man.png",
+      img: "/cheerful-asian-man.png",
+      description: (
+        <p>
+          As someone who deals with anxiety, this app has been life-changing.
+          The guided meditations help me stay centered during stressful
+          workdays.
+        </p>
+      ),
     },
     {
+      id: "3",
       name: "Sarah Williams",
       role: "Healthcare Professional",
-      content:
-        "I recommend Serenity to all my patients who struggle with stress. The breathing exercises are simple yet incredibly effective for quick calm.",
-      avatar: "/joyful-curls.png",
+      img: "/joyful-curls.png",
+      description: (
+        <p>
+          I recommend Serenity to all my patients who struggle with stress. The
+          breathing exercises are simple yet incredibly effective for quick
+          calm.
+        </p>
+      ),
     },
     {
+      id: "4",
       name: "Michael Johnson",
       role: "Business Executive",
-      content:
-        "Serenity has helped me maintain focus and clarity in high-pressure situations. The mindfulness exercises are perfect for quick breaks between meetings.",
-      avatar: "/joyful-woman.png",
+      img: "/joyful-woman.png",
+      description: (
+        <p>
+          Serenity has helped me maintain focus and clarity in high-pressure
+          situations. The mindfulness exercises are perfect for quick breaks
+          between meetings.
+        </p>
+      ),
     },
     {
+      id: "5",
       name: "Olivia Rodriguez",
       role: "Student",
-      content:
-        "As a college student, I often struggle with sleep and anxiety. Serenity's guided meditations have significantly improved my sleep quality and overall well-being.",
-      avatar: "/cheerful-asian-man.png",
+      img: "/cheerful-asian-man.png",
+      description: (
+        <p>
+          As a college student, I often struggle with sleep and anxiety.
+          Serenity's guided meditations have significantly improved my sleep
+          quality and overall well-being.
+        </p>
+      ),
     },
     {
+      id: "6",
       name: "James Wilson",
       role: "Retired Veteran",
-      content:
-        "The PTSD-focused meditations in Serenity have been instrumental in my healing journey. I'm grateful for this tool that supports veterans like myself.",
-      avatar: "/joyful-curls.png",
+      img: "/joyful-curls.png",
+      description: (
+        <p>
+          The PTSD-focused meditations in Serenity have been instrumental in my
+          healing journey. I'm grateful for this tool that supports veterans
+          like myself.
+        </p>
+      ),
     },
     {
+      id: "7",
       name: "Aisha Patel",
       role: "Teacher",
-      content:
-        "I use Serenity's short meditations with my students to help them focus before exams. It's made a noticeable difference in their stress levels and performance.",
-      avatar: "/joyful-woman.png",
+      img: "/joyful-woman.png",
+      description: (
+        <p>
+          I use Serenity's short meditations with my students to help them focus
+          before exams. It's made a noticeable difference in their stress levels
+          and performance.
+        </p>
+      ),
     },
     {
+      id: "8",
       name: "Robert Tanaka",
       role: "Athlete",
-      content:
-        "Serenity's visualization exercises have greatly enhanced my pre-game mental preparation. It's become an essential part of my training regimen.",
-      avatar: "/cheerful-asian-man.png",
+      img: "/cheerful-asian-man.png",
+      description: (
+        <p>
+          Serenity's visualization exercises have greatly enhanced my pre-game
+          mental preparation. It's become an essential part of my training
+          regimen.
+        </p>
+      ),
     },
     {
+      id: "9",
       name: "Elena Gonzalez",
       role: "Artist",
-      content:
-        "The creativity-boosting meditations in Serenity have helped me overcome artist's block numerous times. It's like a secret weapon for inspiration!",
-      avatar: "/joyful-curls.png",
+      img: "/joyful-curls.png",
+      description: (
+        <p>
+          The creativity-boosting meditations in Serenity have helped me
+          overcome artist's block numerous times. It's like a secret weapon for
+          inspiration!
+        </p>
+      ),
     },
   ];
 
@@ -132,47 +259,7 @@ export function TestimonialsSection() {
             </p>
           </div>
         </motion.div>
-        <motion.div
-          className="mx-auto grid max-w-5xl gap-6 py-12 lg:grid-cols-3"
-          variants={containerVariants}
-        >
-          {testimonials.map((testimonial, i) => (
-            <motion.div key={i} variants={itemVariants}>
-              <Card className="overflow-hidden h-full flex flex-col">
-                <CardContent className="p-6 flex flex-col grow">
-                  <div className="flex items-start gap-4">
-                    <Image
-                      src={testimonial.avatar || "/placeholder.svg"}
-                      alt={`${testimonial.name} avatar`}
-                      width={60}
-                      height={60}
-                      className="rounded-full"
-                    />
-                    <div className="grid gap-1">
-                      <h3 className="font-medium">{testimonial.name}</h3>
-                      <p className="text-sm text-muted-foreground">
-                        {testimonial.role}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-4 flex">
-                    {Array(5)
-                      .fill(null)
-                      .map((_, i) => (
-                        <Star
-                          key={i}
-                          className="h-4 w-4 fill-primary text-primary"
-                        />
-                      ))}
-                  </div>
-                  <p className="mt-4 text-muted-foreground grow">
-                    {testimonial.content}
-                  </p>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+        <SocialProofTestimonials testimonials={testimonials} />
       </div>
     </motion.section>
   );
