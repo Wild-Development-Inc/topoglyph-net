@@ -139,7 +139,7 @@ export function TestimonialsSection() {
           {testimonials.map((testimonial, i) => (
             <motion.div key={i} variants={itemVariants}>
               <Card className="overflow-hidden h-full flex flex-col">
-                <CardContent className="p-6 flex flex-col flex-grow">
+                <CardContent className="p-6 flex flex-col grow">
                   <div className="flex items-start gap-4">
                     <Image
                       src={testimonial.avatar || "/placeholder.svg"}
@@ -165,7 +165,7 @@ export function TestimonialsSection() {
                         />
                       ))}
                   </div>
-                  <p className="mt-4 text-muted-foreground flex-grow">
+                  <p className="mt-4 text-muted-foreground grow">
                     {testimonial.content}
                   </p>
                 </CardContent>

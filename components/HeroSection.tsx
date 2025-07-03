@@ -16,7 +16,7 @@ export function HeroSection() {
   return (
     <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48 overflow-hidden">
       <div className="container px-4 md:px-6 relative">
-        <div className="absolute -z-10 top-0 right-0 w-[600px] h-[600px] bg-gradient-to-bl from-primary/20 to-purple-100/20 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute -z-10 top-0 right-0 w-[600px] h-[600px] bg-linear-to-bl from-primary/20 to-purple-100/20 rounded-full blur-3xl opacity-50"></div>
         <motion.div
           initial="hidden"
           animate="show"
@@ -101,7 +101,7 @@ export function HeroSection() {
             }}
           >
             <div className="relative animate-float">
-              <div className="absolute -z-10 inset-0 bg-gradient-to-tr from-primary/20 to-purple-300/20 rounded-[2.5rem] blur-xl"></div>
+              <div className="absolute -z-10 inset-0 bg-linear-to-tr from-primary/20 to-purple-300/20 rounded-[2.5rem] blur-xl"></div>
               <Image
                 src="/iphone.png"
                 alt="Serenity App Screenshot"
