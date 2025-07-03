@@ -58,30 +58,28 @@ export function SocialProofTestimonials({
 }) {
   return (
     <div className="h-full">
-      <div className="px-10">
-        <div className="relative max-h-[750px] overflow-hidden">
-          <div className="gap-0 md:columns-2 xl:columns-3">
-            {Array(Math.ceil(testimonials.length / 3))
-              .fill(0)
-              .map((_, i) => (
-                <Marquee
-                  vertical
-                  key={i}
-                  className={cn({
-                    "[--duration:60s]": i === 1,
-                    "[--duration:30s]": i === 2,
-                    "[--duration:70s]": i === 3,
-                  })}
-                >
-                  {testimonials.slice(i * 3, (i + 1) * 3).map((card, idx) => (
-                    <TestimonialCard {...card} key={idx} />
-                  ))}
-                </Marquee>
-              ))}
-          </div>
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/6 md:h-1/5 w-full bg-gradient-to-t from-background from-20%"></div>
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-1/6 md:h-1/5 w-full bg-gradient-to-b from-background from-20%"></div>
+      <div className="relative max-h-[750px] overflow-hidden">
+        <div className="gap-0 md:columns-2 xl:columns-3">
+          {Array(Math.ceil(testimonials.length / 3))
+            .fill(0)
+            .map((_, i) => (
+              <Marquee
+                vertical
+                key={i}
+                className={cn({
+                  "[--duration:60s]": i === 1,
+                  "[--duration:30s]": i === 2,
+                  "[--duration:70s]": i === 3,
+                })}
+              >
+                {testimonials.slice(i * 3, (i + 1) * 3).map((card, idx) => (
+                  <TestimonialCard {...card} key={idx} />
+                ))}
+              </Marquee>
+            ))}
         </div>
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/6 md:h-1/5 w-full bg-gradient-to-t from-background from-20%"></div>
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/6 md:h-1/5 w-full bg-gradient-to-b from-background from-20%"></div>
       </div>
     </div>
   );
