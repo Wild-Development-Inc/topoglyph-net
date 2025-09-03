@@ -35,6 +35,13 @@ export default function ChatPage() {
                                 prompt: '',
                                 template: '',
                             },
+                            {
+                                id: '3',
+                                label: 'Architectural Design Module',
+                                description: '',
+                                prompt: '',
+                                template: '',
+                            },
                         ],
                         moduleUrls: [
                             'https://topoglyph.net/modules/smol/smol-01.md',

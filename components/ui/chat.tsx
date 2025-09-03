@@ -9,6 +9,7 @@ import { Markdown } from './markdown'
 import { useStreamChat } from '@/hooks/use-stream-chat'
 import { useTextDocuments } from '@/hooks/use-text-documents'
 import ModelCard from './model-card'
+import { Loader2 } from 'lucide-react'
 
 export type Message = {
     id: string
@@ -16,8 +17,7 @@ export type Message = {
     content: string
 }
 
-const myOpenRouterKey =
-    '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'
+const myOpenRouterKey = ''
 
 type ModelDefinition = {
     name: string
@@ -154,7 +154,7 @@ export function Chat({
                     onSelect={handleSelectApp}
                 />
             )}
-            <div className="w-[950px]">
+            <div className="mx-auto">
                 {messages.length > 0 && (
                     <CardContent className="flex-1 p-2">
                         <ScrollArea className="h-full pr-4">
@@ -165,7 +165,9 @@ export function Chat({
                                             <ChatMessage key={i} msg={msg} />
                                         )
                                 )}
-                                {isLoading && <>Loading Response</>}
+                                {isLoading && (
+                                    <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                                )}
                                 <div ref={scrollRef} />
                             </div>
                         </ScrollArea>
@@ -187,14 +189,15 @@ export function Chat({
                     Send
                 </Button>
             </div>
-            <div>
-                <span>Open Router API Key</span>
+            <div className="mt-2">
+                <span className="mr-2">Open Router API Key:</span>
                 <input
                     placeholder="Enter an OpenRouter API Key..."
                     className="border py-2 px-3 rounded-xl w-[400px] focus:ring-blue-500 focus:ring-2 text-sm"
                     value={openRouterApiKey}
                     onChange={(e) => setOpenRouterApiKey(e.target.value)}
                 />
+                <span className="ml-2">plz don't steal {`<3`}</span>
             </div>
         </div>
     )

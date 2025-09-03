@@ -16,7 +16,7 @@ export default function ChatPage() {
                 <ChatContainer
                     model={{
                         name: 'Dani',
-                        avatar: <Rose />,
+                        avatar: <></>,
                         version: '2.1',
                         model: 'x-ai/grok-4',
                         tags: ['empathy', 'emotion', 'communication'],
@@ -26,16 +26,14 @@ export default function ChatPage() {
                                 label: 'HtTP: Hyper Thought Transfer Protocol',
                                 description: '',
                                 prompt: httpPrompt,
-                                template:
-                                    'Help me write a thoughtful letter to my mother',
+                                template: `Apply the HtTP "Emotional Intelligence Augmentation" module to analyze the following piece of text: "Friendship marks a life even more deeply than love. Love risks degenerating into obsession, friendship is never anything but sharing."`,
                             },
                             {
                                 id: '2',
                                 label: 'Poesis: Narrative Driven Life Design',
                                 description: '',
                                 prompt: poesisPrompt,
-                                template:
-                                    'Relate a story from my life to a work of fiction, identify characters that I can relate to, and lessons that I can apply: \nYOUR STORY: {enter your story here} \nYOUR FAVORITE FICTION: {enter your favorite book, movies, shows, etc. here, remove this line if n/a}',
+                                template: `Let's apply poesis to imagine a personal narrative for humans which transcends 'the tri-axis between narcissus (wastes away, in love with own reflection), sisyphus (condemned to eternal toil), and icarus (flew too close to the sun), then let's extend this to empathize with mothers in modern america`,
                             },
                         ],
                         moduleUrls: [

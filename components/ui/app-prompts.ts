@@ -481,3 +481,6 @@ The TopoGlyph Poesis framework aims to exemplify this principle, serving not jus
 This framework extends TopoGlyph principles into the domain of narrative-driven life design, creating a comprehensive system for helping people transform their lives into "poetry in motion" through conscious narrative engagement and poetic decision-making.
 
 `
+
+export const dwarfPrompt = `
+`
