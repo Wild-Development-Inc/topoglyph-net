@@ -25,7 +25,7 @@ export const TestimonialCard = ({
 }: TestimonialCardProps) => (
   <div
     className={cn(
-      "flex w-full cursor-pointer break-inside-avoid flex-col items-center justify-between gap-6 rounded-lg border bg-card p-6 text-card-foreground shadow-sm",
+      "flex w-[250px] cursor-pointer break-inside-avoid flex-col items-center justify-between gap-6 rounded-lg border bg-card p-6 text-card-foreground shadow-sm",
       className
     )}
     {...props}
@@ -33,8 +33,6 @@ export const TestimonialCard = ({
     <div className="select-none leading-relaxed text-sm">{description}</div>
 
     <div className="flex w-full select-none items-center justify-start gap-3">
-      <img src={img} alt={name} className="size-8 rounded-full" />
-
       <div>
         <p className="font-medium text-sm">{name}</p>
         <p className="text-xs text-muted-foreground">{role}</p>
@@ -59,33 +57,17 @@ export function SocialProofTestimonials({
   return (
     <div className="h-full">
       <div className="relative max-h-[750px] overflow-hidden">
-        <div className="gap-0 md:columns-2 xl:columns-3">
-          {Array(Math.ceil(testimonials.length / 3))
-            .fill(0)
-            .map((_, i) => (
-              <Marquee
-                vertical
-                key={i}
-                className={cn({
-                  "[--duration:60s]": i === 1,
-                  "[--duration:30s]": i === 2,
-                  "[--duration:70s]": i === 3,
-                })}
-              >
-                {testimonials.slice(i * 3, (i + 1) * 3).map((card, idx) => (
-                  <TestimonialCard {...card} key={idx} />
-                ))}
-              </Marquee>
+        <div className="gap-4 md:columns-1 xl:columns-4">
+            {testimonials.map((card, idx) => (
+                <TestimonialCard {...card} key={idx} />
             ))}
         </div>
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-1/6 md:h-1/5 w-full bg-gradient-to-t from-background from-20%"></div>
-        <div className="pointer-events-none absolute inset-x-0 top-0 h-1/6 md:h-1/5 w-full bg-gradient-to-b from-background from-20%"></div>
       </div>
     </div>
   );
 }
 
-export function TestimonialsSection() {
+export default function ExampleGallery() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
@@ -232,33 +214,8 @@ export function TestimonialsSection() {
   };
 
   return (
-    <motion.section
-      ref={ref}
-      id="testimonials"
-      className="w-full py-12 md:py-24 lg:py-32"
-      initial="hidden"
-      animate={isInView ? "visible" : "hidden"}
-      variants={containerVariants}
-    >
-      <div className="container px-4 md:px-6">
-        <motion.div
-          className="flex flex-col items-center justify-center space-y-4 text-center"
-          variants={itemVariants}
-        >
-          <div className="space-y-2">
-            <Badge variant="outline" className="px-3 py-1 rounded-full">
-              Testimonials
-            </Badge>
-            <h2 className="text-3xl font-semibold tracking-tight sm:text-5xl">
-              What Our Users Say
-            </h2>
-            <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              Thousands of people have transformed their lives with Serenity.
-            </p>
-          </div>
-        </motion.div>
+    <div className="container px-4 md:px-6">
         <SocialProofTestimonials testimonials={testimonials} />
-      </div>
-    </motion.section>
+    </div>
   );
 }
